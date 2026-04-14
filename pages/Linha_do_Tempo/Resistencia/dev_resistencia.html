@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desenvolvimento - Resistência | Linha do Tempo</title>
+    <link rel="stylesheet" href="../../../css/style.css">
+    <style>
+        .dev-container {
+            max-width: 1200px;
+            margin: 100px auto 20px;
+            padding: 20px;
+        }
+        
+        .dev-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .dev-header h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .dev-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .dev-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #007bff;
+        }
+        
+        .dev-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dev-card h3 {
+            color: #007bff;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .dev-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        
+        .tab-content {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-content h2 {
+            color: #007bff;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .tab-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+        
+        .dev-footer {
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header class="menu-header">
+        <div class="menu-container">
+            <div class="logo">
+                <a href="../../../index.html">
+                    <img src="../../../assets/icons/profEPTcnome.jpeg" alt="Logo">
+                </a>
+            </div>
+            
+            <!-- Menu Hambúrguer para Mobile -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <nav class="menu-nav" id="menuNav">
+                <!-- Botão 1 com 5 submenus -->
+                <div class="dropdown">
+                    <button class="menu-btn">Quem Somos</button>
+                    <div class="dropdown-content">
+                        <a href="#" class="submenu-btn">Submenu 3.1</a>
+                        <a href="#" class="submenu-btn">Submenu 3.2</a>
+                        <a href="#" class="submenu-btn">Submenu 3.3</a>
+                        <a href="#" class="submenu-btn">Submenu 3.4</a>
+                        <a href="#" class="submenu-btn">Submenu 3.5</a>
+                        <a href="#" class="submenu-btn">Submenu 3.6</a>
+                    </div>
+                </div>
+
+                <!-- Botão 2 com 5 submenus -->
+                <div class="dropdown">
+                    <button class="menu-btn">Entre Acordes e Oficinas</button>
+                    <div class="dropdown-content">
+                        <a href="../../entre_acordes/como_navegar.html" class="submenu-btn">Como Navegar</a>
+                        <a href="../../entre_acordes/referencias.html" class="submenu-btn">Referências Bibliográficas</a>
+                        <a href="../../entre_acordes/equipe.html" class="submenu-btn">Equipe</a>
+                        <a href="../../entre_acordes/colabore.html" class="submenu-btn">Colabore</a>
+                        <a href="../../entre_acordes/conteudo.html" class="submenu-btn">Conteúdo</a>
+                    </div>
+                </div>
+
+                <!-- Botão 3 com 6 submenus -->
+                <div class="dropdown">
+                    <button class="menu-btn">Linha do Tempo</button>
+                    <div class="dropdown-content">
+                        <a href="../Fundações/Fundações.html" class="submenu-btn">Fundações (1909-1930)</a>
+                        <a href="../consolidção/Consolidação.html" class="submenu-btn">Consolidação (1930-1945)</a>
+                        <a href="../Modernizacao/Modernização.html" class="submenu-btn">Modernização (1946-1964)</a>
+                        <a href="../conflito/conflito.html" class="submenu-btn">Conflito (1964-1985)</a>
+                        <a href="../Resistencia/resistência.html" class="submenu-btn">Resistência e inovação (1964-1985)</a>
+                        <a href="../Redemocratização/redemocratização.html" class="submenu-btn">Redemocratização e digitalização (1985-2008)</a>
+                    </div>
+                </div>
+
+                <!-- Botão 4 -->
+                <div class="dropdown">
+                    <button class="menu-btn">Extra</button>
+                    <div class="dropdown-content">
+                        <a href="#" class="submenu-btn">Submenu 3.1</a>
+                        <a href="#" class="submenu-btn">Submenu 3.2</a>
+                        <a href="#" class="submenu-btn">Submenu 3.3</a>
+                        <a href="#" class="submenu-btn">Submenu 3.4</a>
+                        <a href="#" class="submenu-btn">Submenu 3.5</a>
+                        <a href="#" class="submenu-btn">Submenu 3.6</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dev-container">
+        <div class="dev-header">
+            <h1>Desenvolvimento - Resistência e Inovação (1964-1985)</h1>
+            <p>Clique nos cards abaixo para explorar o conteúdo detalhado deste período</p>
+        </div>
+
+        <!-- Cards Clicáveis -->
+        <div class="dev-cards">
+            <div class="dev-card" onclick="showTab('movimentos-estudantis')">
+                <h3>Movimentos Estudantis</h3>
+                <p>Conheça as lutas estudantis contra o regime militar.</p>
+            </div>
+            
+            <div class="dev-card" onclick="showTab('educacao-resistente')">
+                <h3>Educação Resistente</h3>
+                <p>Descubra como a educação resistiu às políticas autoritárias.</p>
+            </div>
+            
+            <div class="dev-card" onclick="showTab('inovacoes-culturais')">
+                <h3>Inovações Culturais</h3>
+                <p>Explore as formas criativas de resistência e expressão cultural.</p>
+            </div>
+        </div>
+
+        <!-- Conteúdo das Abas -->
+        <div id="movimentos-estudantis" class="tab-content">
+            <h2>Movimentos Estudantis (1964-1985)</h2>
+            <p>Os movimentos estudantis foram fundamentais na resistência ao regime militar. Universidades e escolas tornaram-se centros de oposição e organização política.</p>
+            <p>O movimento estudantil ganhou força com as reformas universitárias de 1968, que buscavam maior autonomia e democratização do ensino. A resposta do regime foi dura, com o AI-5 e a repressão aos líderes estudantis.</p>
+            <p>Apesar da repressão, os estudantes continuaram organizando manifestações, ocupações e protestos, mantendo viva a luta pela democracia e pela educação como direito.</p>
+        </div>
+
+        <div id="educacao-resistente" class="tab-content">
+            <h2>Educação Resistente</h2>
+            <p>A educação durante o regime militar tornou-se espaço de resistência. Professores e estudantes criaram alternativas pedagógicas e metodologias críticas.</p>
+            <p>As universidades resistiram à interferência militar na autonomia acadêmica, defendendo a liberdade de ensino e pesquisa. Foram criados cursos e disciplinas que questionavam o modelo autoritário.</p>
+            <p>A educação profissional também resistiu, mantendo práticas pedagógicas democráticas e formando profissionais críticos e conscientes de seu papel social.</p>
+        </div>
+
+        <div id="inovacoes-culturais" class="tab-content">
+            <h2>Inovações Culturais</h2>
+            <p>Apesar da censura, o período foi fértil em inovações culturais. A música, o teatro, a literatura e as artes plásticas encontraram formas de expressão e resistência.</p>
+            <p>O Tropicalismo, a música de protesto, o cinema novo e o teatro de resistência foram importantes movimentos culturais que desafiaram a censura e criticaram o regime.</p>
+            <p>Estas inovações culturais não apenas resistiram, mas também criaram novas linguagens artísticas que influenciaram profundamente a cultura brasileira posterior.</p>
+        </div>
+
+        <div class="dev-footer">
+            <a href="resistência.html" class="back-button">← Voltar para Resistência</a>
+        </div>
+    </main>
+
+    <script src="../../../js/script.js"></script>
+    <script>
+        function showTab(tabId) {
+            // Esconder todas as abas
+            const allTabs = document.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Mostrar a aba selecionada
+            const selectedTab = document.getElementById(tabId);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+        }
+        
+        // Mostrar primeira aba por padrão
+        document.addEventListener('DOMContentLoaded', function() {
+            showTab('movimentos-estudantis');
+        });
+    </script>
+
+</body>
+</html>
