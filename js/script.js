@@ -1,5 +1,131 @@
 // SCRIPT UNIVERSAL PARA NAVEGAÇÃO TOTAL - Menu Responsivo com Submenus
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // Header scroll effect
+    const menuHeader = document.querySelector('.menu-header');
+    let lastScrollY = 0;
+    
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        
+        if (currentScrollY > 50) {
+            menuHeader.classList.add('scrolled');
+        } else {
+            menuHeader.classList.remove('scrolled');
+        }
+        
+        lastScrollY = currentScrollY;
+    });
+    
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                
+                // Stagger animation for feature cards
+                if (entry.target.classList.contains('feature-card')) {
+                    const cards = document.querySelectorAll('.feature-card');
+                    cards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    });
+                }
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all animate-on-scroll elements
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+    
+    // Add ripple effect to buttons
+    function createRipple(event) {
+        const button = event.currentTarget;
+        const ripple = document.createElement('span');
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = event.clientX - rect.left - size / 2;
+        const y = event.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+        
+        // Remove existing ripples
+        const existingRipple = button.querySelector('.ripple');
+        if (existingRipple) {
+            existingRipple.remove();
+        }
+        
+        button.appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    }
+    
+    // Add ripple effect to all buttons
+    document.querySelectorAll('.menu-btn, .hero-btn').forEach(button => {
+        button.addEventListener('click', createRipple);
+    });
+    
+    // Parallax effect for hero section - FIXED
+    const heroSection = document.querySelector('.hero-section');
+    const floatingCards = document.querySelectorAll('.floating-card');
+    
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        
+        // Only apply parallax to hero section background, not to cards
+        if (heroSection && scrolled < window.innerHeight) {
+            const parallax = scrolled * 0.3;
+            heroSection.style.transform = `translateY(${parallax}px)`;
+        }
+        
+        // Keep cards in their original floating positions during scroll
+        // Don't apply scroll-based transform to cards to maintain their animations
+    });
+    
+    // Add loading animation
+    window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+        
+        // Trigger initial animations
+        setTimeout(() => {
+            document.querySelectorAll('.animate-on-scroll').forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('visible');
+                }, index * 200);
+            });
+        }, 300);
+    });
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const menuNav = document.getElementById('menuNav');
     const dropdowns = document.querySelectorAll('.dropdown');
