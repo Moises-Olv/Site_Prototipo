@@ -1,4 +1,4 @@
-// SCRIPT UNIVERSAL PARA NAVEGAÇÃO TOTAL - Menu Responsivo com Submenus
+
 document.addEventListener('DOMContentLoaded', function() {
     
     // Header scroll effect

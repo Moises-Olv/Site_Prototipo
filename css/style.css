@@ -42,7 +42,7 @@
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--dark-bg);
-    background-image: 
+    background-image:
         radial-gradient(circle at 25% 25%, rgba(124, 152, 133, 0.06) 0%, transparent 50%),
         radial-gradient(circle at 75% 75%, rgba(244, 162, 97, 0.04) 0%, transparent 50%),
         radial-gradient(circle at 50% 10%, rgba(126, 87, 194, 0.03) 0%, transparent 50%);
@@ -82,8 +82,15 @@ html {
 
 /* Loading animation */
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
 }
 
 .loading {
@@ -100,12 +107,14 @@ html {
 }
 
 /* Button animations */
-.menu-btn, .hero-btn {
+.menu-btn,
+.hero-btn {
     position: relative;
     overflow: hidden;
 }
 
-.menu-btn::after, .hero-btn::after {
+.menu-btn::after,
+.hero-btn::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -118,7 +127,8 @@ html {
     transition: width 0.6s, height 0.6s;
 }
 
-.menu-btn:active::after, .hero-btn:active::after {
+.menu-btn:active::after,
+.hero-btn:active::after {
     width: 300px;
     height: 300px;
 }
@@ -129,6 +139,7 @@ html {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -140,9 +151,17 @@ html {
     animation: fadeInUpStagger 0.6s ease-out forwards;
 }
 
-.feature-card:nth-child(1) { animation-delay: 0.1s; }
-.feature-card:nth-child(2) { animation-delay: 0.2s; }
-.feature-card:nth-child(3) { animation-delay: 0.3s; }
+.feature-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.feature-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.feature-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
 
 /* Intersection Observer for scroll animations */
 .animate-on-scroll {
@@ -210,11 +229,11 @@ body.loaded .animate-on-scroll {
 
 /* Smooth transitions for all interactive elements */
 * {
-    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menu-container {
@@ -260,8 +279,6 @@ body.loaded .animate-on-scroll {
 .dropdown {
     position: relative;
     display: inline-block;
-    padding: 8px 0;
-    margin: -8px 0;
 }
 
 .dropdown:hover .dropdown-content {
@@ -401,27 +418,21 @@ body.loaded .animate-on-scroll {
     border-color: var(--brazil-blue);
 }
 
-/* Área invisível maior para manter dropdown aberto */
-.dropdown::before {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: -20px;
-    right: -20px;
-    height: 20px;
-    background: transparent;
-    z-index: 999;
-}
-
+/* Área invisível para manter dropdown aberto (ponte entre botão e menu) */
 .dropdown::after {
     content: '';
     position: absolute;
-    top: calc(100% + 20px);
+    top: 100%;
     left: 0;
     right: 0;
-    height: 200px;
+    height: 12px;
     background: transparent;
     z-index: 999;
+    pointer-events: none;
+}
+
+.dropdown:hover::after {
+    pointer-events: auto;
 }
 
 .content {
@@ -629,20 +640,23 @@ body.loaded .animate-on-scroll {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(99, 102, 241, 0.1),
-        transparent,
-        rgba(34, 211, 238, 0.1),
-        transparent
-    );
+    background: linear-gradient(45deg,
+            transparent,
+            rgba(99, 102, 241, 0.1),
+            transparent,
+            rgba(34, 211, 238, 0.1),
+            transparent);
     animation: shimmer 3s ease-in-out infinite;
 }
 
 @keyframes shimmer {
-    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
 }
 
 .welcome-message h2 {
@@ -873,29 +887,75 @@ body.loaded .animate-on-scroll {
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
 @keyframes float1 {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    25% { transform: translateY(-10px) translateX(5px); }
-    50% { transform: translateY(-15px) translateX(0px); }
-    75% { transform: translateY(-10px) translateX(-5px); }
+
+    0%,
+    100% {
+        transform: translateY(0px) translateX(0px);
+    }
+
+    25% {
+        transform: translateY(-10px) translateX(5px);
+    }
+
+    50% {
+        transform: translateY(-15px) translateX(0px);
+    }
+
+    75% {
+        transform: translateY(-10px) translateX(-5px);
+    }
 }
 
 @keyframes float2 {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    25% { transform: translateY(-12px) translateX(-5px); }
-    50% { transform: translateY(-18px) translateX(0px); }
-    75% { transform: translateY(-12px) translateX(5px); }
+
+    0%,
+    100% {
+        transform: translateY(0px) translateX(0px);
+    }
+
+    25% {
+        transform: translateY(-12px) translateX(-5px);
+    }
+
+    50% {
+        transform: translateY(-18px) translateX(0px);
+    }
+
+    75% {
+        transform: translateY(-12px) translateX(5px);
+    }
 }
 
 @keyframes float3 {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    25% { transform: translateY(-8px) translateX(3px); }
-    50% { transform: translateY(-12px) translateX(0px); }
-    75% { transform: translateY(-8px) translateX(-3px); }
+
+    0%,
+    100% {
+        transform: translateY(0px) translateX(0px);
+    }
+
+    25% {
+        transform: translateY(-8px) translateX(3px);
+    }
+
+    50% {
+        transform: translateY(-12px) translateX(0px);
+    }
+
+    75% {
+        transform: translateY(-8px) translateX(-3px);
+    }
 }
 
 @keyframes fadeInUp {
@@ -903,6 +963,7 @@ body.loaded .animate-on-scroll {
         opacity: 0;
         transform: translateY(40px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -914,6 +975,7 @@ body.loaded .animate-on-scroll {
         opacity: 0;
         transform: translateX(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -925,6 +987,7 @@ body.loaded .animate-on-scroll {
         opacity: 0;
         transform: translateX(30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -936,6 +999,7 @@ body.loaded .animate-on-scroll {
         opacity: 0;
         transform: scale(0.9);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
@@ -1129,11 +1193,11 @@ body.loaded .animate-on-scroll {
     .hero-content {
         gap: 40px;
     }
-    
+
     .hero-title {
         font-size: 48px;
     }
-    
+
     .features-grid {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
@@ -1143,89 +1207,89 @@ body.loaded .animate-on-scroll {
     .page-content {
         padding: 25px;
     }
-    
+
     .page-content h1 {
         font-size: 24px;
     }
-    
+
     .page-content p {
         font-size: 14px;
     }
-    
+
     /* Hero Section Mobile */
     .hero-section {
         padding: 60px 0;
         min-height: auto;
     }
-    
+
     .hero-content {
         grid-template-columns: 1fr;
         gap: 40px;
         text-align: center;
     }
-    
+
     .hero-title {
         font-size: 36px;
     }
-    
+
     .hero-subtitle {
         font-size: 18px;
     }
-    
+
     .hero-buttons {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .hero-btn {
         width: 100%;
         max-width: 300px;
         justify-content: center;
     }
-    
+
     .hero-visual {
         height: 300px;
     }
-    
+
     .floating-card {
         padding: 20px;
         min-width: 120px;
     }
-    
+
     .card-icon {
         font-size: 36px;
     }
-    
+
     /* Features Section Mobile */
     .features-section {
         padding: 60px 0;
     }
-    
+
     .section-title {
         font-size: 32px;
         margin-bottom: 40px;
     }
-    
+
     .features-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
+
     .feature-card {
         padding: 30px 20px;
     }
-    
+
     .feature-icon {
         width: 60px;
         height: 60px;
     }
-    
+
     /* Hero cards mobile - vertical layout */
     .hero-visual {
         height: auto;
         min-height: 300px;
     }
-    
+
     .floating-cards {
         display: flex;
         flex-direction: column;
@@ -1233,7 +1297,7 @@ body.loaded .animate-on-scroll {
         height: auto;
         position: static;
     }
-    
+
     .floating-card {
         position: static;
         width: 100%;
@@ -1241,19 +1305,29 @@ body.loaded .animate-on-scroll {
         animation: none;
         text-align: center;
     }
-    
+
     .floating-card:hover {
         transform: translateY(-5px);
     }
-    
-    .card-1, .card-2, .card-3 {
+
+    .card-1,
+    .card-2,
+    .card-3 {
         animation: fadeInUp 0.6s ease-out forwards;
     }
-    
-    .card-1 { animation-delay: 0.1s; }
-    .card-2 { animation-delay: 0.2s; }
-    .card-3 { animation-delay: 0.3s; }
-    
+
+    .card-1 {
+        animation-delay: 0.1s;
+    }
+
+    .card-2 {
+        animation-delay: 0.2s;
+    }
+
+    .card-3 {
+        animation-delay: 0.3s;
+    }
+
     /* Footer Mobile */
     .footer-content {
         grid-template-columns: 1fr;
@@ -1267,20 +1341,20 @@ body.loaded .animate-on-scroll {
     .menu-container {
         padding: 0 15px;
     }
-    
+
     .logo {
         margin-right: 20px;
     }
-    
+
     .logo img {
         height: 40px;
     }
-    
+
     .menu-btn {
         padding: 12px 20px;
         font-size: 14px;
     }
-    
+
     .dropdown-content {
         min-width: 180px;
     }
@@ -1293,22 +1367,22 @@ body.loaded .animate-on-scroll {
         top: 0;
         z-index: 1000;
     }
-    
+
     .content {
         padding: 80px 15px 20px;
     }
-    
+
     .timeline-header h1 {
         font-size: 18px;
     }
-    
+
     /* Cards verticais no mobile */
     .cards-container {
         overflow-x: visible;
         overflow-y: visible;
         padding: 20px 0;
     }
-    
+
     .cards-scroll {
         display: flex;
         flex-direction: column;
@@ -1317,76 +1391,76 @@ body.loaded .animate-on-scroll {
         min-width: auto;
         width: 100%;
     }
-    
+
     .large-card {
         width: 100%;
         height: auto;
         min-height: 200px;
     }
-    
+
     .white-card {
         width: 100%;
         height: auto;
         min-height: 200px;
     }
-    
+
     .card {
         margin-bottom: 20px;
     }
-    
+
     .card-content {
         padding: 20px;
     }
-    
+
     .red-card .year {
         font-size: 16px;
     }
-    
+
     .red-card h2 {
         font-size: 18px;
     }
-    
+
     .red-card p {
         font-size: 14px;
     }
-    
+
     .red-card .year-bottom {
         font-size: 20px;
         bottom: 20px;
         left: 20px;
     }
-    
+
     .white-card h3 {
         font-size: 16px;
     }
-    
+
     .white-card p {
         font-size: 13px;
     }
-    
+
     .portrait img {
         width: 60px;
         height: 80px;
     }
-    
+
     .date {
         font-size: 12px;
     }
-    
+
     .menu-container {
         justify-content: space-between;
         padding: 10px 15px;
     }
-    
+
     .logo {
         margin-right: 0;
         margin-bottom: 0;
     }
-    
+
     .logo img {
         height: 35px;
     }
-    
+
     /* Menu Hambúrguer */
     .mobile-menu-btn {
         display: flex;
@@ -1399,7 +1473,7 @@ body.loaded .animate-on-scroll {
         cursor: pointer;
         padding: 0;
     }
-    
+
     .mobile-menu-btn span {
         display: block;
         height: 3px;
@@ -1408,19 +1482,19 @@ body.loaded .animate-on-scroll {
         border-radius: 2px;
         transition: all 0.3s ease;
     }
-    
+
     .mobile-menu-btn.active span:nth-child(1) {
         transform: rotate(45deg) translate(8px, 8px);
     }
-    
+
     .mobile-menu-btn.active span:nth-child(2) {
         opacity: 0;
     }
-    
+
     .mobile-menu-btn.active span:nth-child(3) {
         transform: rotate(-45deg) translate(8px, -8px);
     }
-    
+
     .menu-nav {
         position: fixed;
         top: 60px;
@@ -1434,18 +1508,18 @@ body.loaded .animate-on-scroll {
         overflow: hidden;
         transition: max-height 0.3s ease;
         z-index: 999;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
-    
+
     .menu-nav.active {
         max-height: 80vh;
         overflow-y: auto;
     }
-    
+
     .dropdown {
         width: 100%;
     }
-    
+
     .menu-btn {
         padding: 15px 20px;
         font-size: 16px;
@@ -1457,23 +1531,23 @@ body.loaded .animate-on-scroll {
         border-bottom: 1px solid #444;
         background-color: #555;
     }
-    
+
     .menu-btn.active-page {
         background-color: #007bff;
         font-weight: bold;
     }
-    
+
     .menu-btn::after {
         content: '\25B2';
         font-size: 12px;
         margin-left: auto;
         transition: transform 0.3s ease;
     }
-    
+
     .dropdown.open .menu-btn::after {
         transform: rotate(180deg);
     }
-    
+
     .dropdown-content {
         position: static;
         margin-top: 0;
@@ -1485,42 +1559,42 @@ body.loaded .animate-on-scroll {
         overflow: hidden;
         transition: max-height 0.3s ease;
     }
-    
+
     .dropdown.open .dropdown-content {
         max-height: 500px !important;
         display: block !important;
     }
-    
-        
+
+
     .dropdown-content .submenu-btn {
         padding: 15px 30px;
         font-size: 14px;
         border-bottom: 1px solid #555;
         background-color: #444;
     }
-    
+
     .dropdown-content .submenu-btn:last-child {
         border-bottom: none;
     }
-    
+
     .dropdown-content .submenu-btn.active-page {
         background-color: #007bff;
         font-weight: bold;
     }
-    
+
     .content {
         margin: 20px auto;
         padding: 0 15px;
     }
-    
+
     .welcome-message {
         padding: 20px;
     }
-    
+
     .welcome-message h2 {
         font-size: 24px;
     }
-    
+
     .welcome-message p {
         font-size: 14px;
     }
@@ -1531,69 +1605,70 @@ body.loaded .animate-on-scroll {
     .menu-container {
         padding: 8px;
     }
-    
+
     .logo img {
         height: 30px;
     }
-    
+
     .menu-btn {
         padding: 12px;
         font-size: 14px;
     }
-    
+
     .dropdown-content .submenu-btn {
         padding: 12px;
         font-size: 13px;
     }
-    
+
     .welcome-message {
         padding: 15px;
     }
-    
+
     .welcome-message h2 {
         font-size: 20px;
     }
-    
+
     /* Cards verticais em celulares pequenos */
     .cards-scroll {
         gap: 15px;
     }
-    
-    .large-card, .white-card {
+
+    .large-card,
+    .white-card {
         min-height: 180px;
     }
-    
+
     .card-content {
         padding: 15px;
     }
-    
+
     .floating-card {
         padding: 20px;
     }
-    
+
     .card-icon {
         font-size: 32px;
         margin-bottom: 12px;
     }
-    
+
     .floating-card h3 {
         font-size: 16px;
     }
-    
+
     /* Features em telas pequenas */
     .feature-card {
         padding: 25px 15px;
     }
-    
+
     .feature-icon {
         width: 50px;
         height: 50px;
     }
-    
+
     .feature-card h3 {
         font-size: 20px;
     }
-    
+
     .feature-card p {
         font-size: 14px;
     }
